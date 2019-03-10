@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/jarrod/Projects/brex/lib/cuid'
+let g:netrw_dirhist_2='/Users/jarrod/Projects/brex/lib/cuid/src'
+let g:netrw_dirhist_3='/Users/jarrod/Projects/brex/lib'
+let g:netrw_dirhist_4='/Users/jarrod/Projects/brex'
+let g:netrw_dirhist_5='/Users/jarrod/Projects/orion'
+let g:netrw_dirhist_6='/Users/jarrod/Projects/orion/orion'
+let g:netrw_dirhist_7='/Users/jarrod/Projects/paragon'

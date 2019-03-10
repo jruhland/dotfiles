@@ -1,0 +1,13 @@
+[core]
+	editor = vim
+	excludesfile = /Users/jarrod/.gitignore
+
+[alias]
+	co = checkout
+	hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	st = status
+
+[user]
+	name = Jarrod Ruhland
+	email = jarrod.ruhland@gmail.com
+
