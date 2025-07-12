@@ -1,0 +1,53 @@
+[user]
+	name = Jarrod Ruhland
+	email = jarrod.ruhland@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKT5VdgmZ6sKhGQ293yjD0KucbrAp3lj39+nj8/x0+zw
+
+[core]
+	excludesfile = ~/.gitignore
+	editor = nvim
+	fsmonitor = true
+	untrackedcache = true
+
+[alias]
+	a = add
+	br = branch
+	c = commit
+	co = checkout
+	cob = checkout -b
+	d = diff
+	f = fetch
+	h = hist
+	hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	l = log
+	p = push
+	r = reset
+	rbi = rebase -i
+	s = status --short --branch
+	st = status
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+	up = pull --rebase
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[github]
+	user = jruhland
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[commit]
+	gpgsign = true
+
+[rerere]
+	enabled = true
+
+
