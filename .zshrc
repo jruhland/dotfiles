@@ -19,4 +19,5 @@ else
   export EDITOR='nvim'
 fi
 
-# aliases are found in $ZSH_CUSTOM/aliases.zsh (~/.oh-my-zsh/custom/aliases) 
+# Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
+alias claude="/Users/jarrod/.claude/local/claude"

@@ -2,7 +2,8 @@ vim.lsp.enable({
     'gopls',
     'pyright',
     'ruby-lsp',
-    'typescript-language-server',
+    'ts-ls',
+    'tailwindcss',
     'rust_analyzer',
     'graphql-language-service-cli',
     'terraform-ls',
@@ -11,5 +12,6 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
     virtual_text = true,
+    underline = true,
 })
 
