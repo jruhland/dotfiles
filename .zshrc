@@ -19,5 +19,24 @@ else
   export EDITOR='nvim'
 fi
 
+
+export BAT_THEME="Catpuccin-Mocha"
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTORY_IGNORE="(ls|cd|pwd|z|exit)*"
+
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt APPEND_HISTORY
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
 alias claude="/Users/jarrod/.claude/local/claude"

@@ -6,3 +6,6 @@ alias cat=bat
 alias grep=rg
 alias vim=nvim
 alias g=git
+
+alias reload="source ~/.zshrc"
+alias zconfig="vim ~/.zshrc"
