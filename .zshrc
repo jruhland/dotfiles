@@ -41,5 +41,8 @@ setopt HIST_REDUCE_BLANKS
 # git spice completions
 eval "$(gs shell completion zsh)"
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
 alias claude="/Users/jarrod/.claude/local/claude"
