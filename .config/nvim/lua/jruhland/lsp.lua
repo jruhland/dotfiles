@@ -1,17 +1,13 @@
 vim.lsp.enable({
     'gopls',
-    'pyright',
-    'ruby-lsp',
+    'lua-ls',
     'ts-ls',
+    'rust-analyzer',
     'tailwindcss',
-    'rust_analyzer',
-    'graphql-language-service-cli',
-    'terraform-ls',
-    'biome',
 })
 
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_lines = true,
     underline = true,
 })
 
