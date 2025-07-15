@@ -7,6 +7,8 @@ return {
     opts = {
       ensure_installed = {
         -- LSP servers (matching your vim.lsp.enable() config)
+        "bzl", -- Bazel LSP
+        "elixir-ls", -- Elixir LSP
         "lua-language-server", -- Lua LSP
         -- "gopls", -- Go LSP
         "typescript-language-server", -- TypeScript LSP
