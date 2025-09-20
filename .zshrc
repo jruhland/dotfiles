@@ -6,7 +6,7 @@ ZSH_THEME="robbyrussell"
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-plugins=(fzf mise zoxide)
+plugins=(fzf asdf zoxide uv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,3 +46,7 @@ eval "$(zoxide init zsh)"
 
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
 alias claude="/Users/jarrod/.claude/local/claude"
+
+. "$HOME/.local/bin/env"
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
