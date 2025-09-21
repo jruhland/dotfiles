@@ -14,19 +14,9 @@ brew bundle install
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-mkdir -p ~/.config
+dotter deploy -v
 
-# symlink our dotfiles
-ln -s `pwd`/.zshrc ~/.zshrc
-ln -s `pwd`/.gitconfig ~/.gitconfig
-ln -s `pwd`/.gitignore_global ~/.gitignore
-ln -s `pwd`/.config/gh ~/.config/gh
-ln -s `pwd`/.config/nvim ~/.config/nvim
-ln -s `pwd`/.ghostty ~/.ghostty
-ln -s `pwd`/aliases.zsh $ZSH_CUSTOM/aliases.zsh
-
-# load our versions
-mise trust
-mise install
+# install all our preferred versions
+asdf install
 
 npm install -g @anthropic-ai/claude-code

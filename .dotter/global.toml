@@ -4,10 +4,13 @@
 depends = []
 
 [default.files]
-Brewfile = "Brewfile"
-"aliases.zsh" = ""
-"bootstrap.sh" = ""
-"macos.sh" = ""
+".gitconfig" = "~/.gitconfig"
+".gitignore_global" = "~/.gitignore"
+".zshrc" = "~/.zshrc"
+".config" = "~/.config"
+".tool-versions" = "~/.tool-versions"
+
+"aliases.zsh" = "$ZSH_CUSTOM/aliases.zsh"
 
 [default.variables]
 
