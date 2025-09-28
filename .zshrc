@@ -50,3 +50,6 @@ alias claude="/Users/jarrod/.claude/local/claude"
 . "$HOME/.local/bin/env"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
