@@ -21,8 +21,7 @@ return {
         -- Note: gofmt comes with Go installation, not managed by Mason
         "biome",
         -- "rustfmt",
-        -- "black",
-        -- "isort",
+        -- "ruff",
 
         -- Linters and diagnostics
         -- "golangci-lint",

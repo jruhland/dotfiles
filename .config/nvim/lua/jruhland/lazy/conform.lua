@@ -2,6 +2,8 @@ return {
   "stevearc/conform.nvim",
   opts = {},
   config = function()
+    local js_formatters = { "oxlint", "oxfmt" }
+
     require("conform").setup({
       quiet = true,
       notify_no_formatters = false,
@@ -13,16 +15,19 @@ return {
         lsp_format = "fallback",
       },
       formatters_by_ft = {
-        -- go = { "gofmt" },
+        go = { "gofmt" },
         lua = { "stylua" },
-        -- rust = { "rustfmt" },
-        -- python = { "isort", "black" },
-        javascript = { "biome", stop_after_first = true },
-        javascriptreact = { "biome", stop_after_first = true },
-        typescript = { "biome", stop_after_first = true },
-        typescriptreact = { "biome", stop_after_first = true },
-        json = { "biome", stop_after_first = true },
-        css = { "biome", stop_after_first = true },
+        python = { "ruff" },
+        javascript = js_formatters,
+        javascriptreact = js_formatters,
+        typescript = js_formatters,
+        typescriptreact = js_formatters,
+        sh = { "shfmt" },
+        dockerfile = { "hadolint" },
+        bash = { "shfmt" },
+        gitcommit = { "commitlint" },
+        graphql = { "prettier" },
+        sql = { "sqlfluff" },
       },
     })
   end,

@@ -1,6 +1,10 @@
 vim.lsp.enable({
   "gopls",
   "lua-ls",
+  "oxlint",
+  "pyright",
+  "ruby_lsp",
+  "ruff",
   "ts-ls",
   "rust-analyzer",
   "tailwindcss",

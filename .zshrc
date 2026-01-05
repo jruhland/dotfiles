@@ -19,8 +19,7 @@ else
   export EDITOR='nvim'
 fi
 
-
-export BAT_THEME="Catpuccin-Mocha"
+export SAM_CLI_TELEMETRY=0
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -50,6 +49,3 @@ alias claude="/Users/jarrod/.claude/local/claude"
 . "$HOME/.local/bin/env"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
-# Shopify Hydrogen alias to local projects
-alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
