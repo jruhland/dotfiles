@@ -69,7 +69,17 @@ fi
 # Deploy dotfiles with dotter
 echo "Deploying dotfiles..."
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
-dotter deploy -v
+if is_darwin; then
+  dotter deploy -v -l macos
+else
+  dotter deploy -v -l linux
+fi
+
+# Install Cursor extensions
+if [ -f "$HOME/.dotfiles/cursor/install-extensions.sh" ]; then
+  echo "Installing Cursor extensions..."
+  "$HOME/.dotfiles/cursor/install-extensions.sh"
+fi
 
 # Install mise
 if [ ! -f "$HOME/.local/bin/mise" ]; then

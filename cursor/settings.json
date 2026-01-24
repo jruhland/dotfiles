@@ -1,0 +1,37 @@
+{
+    "git.ignoreLimitWarning": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/Thumbs.db": true,
+        "**.DS_Store": true,
+        "**/node_modules": true
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "window.commandCenter": true,
+    "workbench.activityBar.location": "bottom",
+    "workbench.activityBar.orientation": "horizontal",
+    "workbench.sideBar.location": "right",
+    "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "cursor.composer.textSizeScale": 0.85,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.autoReveal": false,
+    "workbench.editor.revealIfOpen": true,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "editor.fontFamily": "'Maple Mono', Hack, Menlo, Monaco, 'Courier New', monospace",
+    "go.toolsManagement.autoUpdate": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDelete": false,
+    "editor.rulers": [
+        100
+    ]
+}
