@@ -146,5 +146,5 @@ cd ~/.dotfiles
 git pull
 brew bundle install    # macOS
 brew bundle install --file=Brewfile.linux  # Linux
-dotter deploy -v -l macos   # or -l linux
+dotter deploy -v -l .dotter/macos.toml   # or -l .dotter/linux.toml
 ```

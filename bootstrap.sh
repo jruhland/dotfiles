@@ -86,9 +86,9 @@ fi
 echo "Deploying dotfiles..."
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 if is_darwin; then
-  dotter deploy -v -l macos
+  dotter deploy -v -l .dotter/macos.toml
 else
-  dotter deploy -v -l linux
+  dotter deploy -v -l .dotter/linux.toml
 fi
 
 # Apply macOS settings (before launching Cursor)
