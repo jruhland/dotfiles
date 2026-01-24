@@ -28,6 +28,7 @@ depends = ["default"]
 [macos.files]
 "cursor/settings.json" = "~/Library/Application Support/Cursor/User/settings.json"
 "cursor/keybindings.json" = "~/Library/Application Support/Cursor/User/keybindings.json"
+".colima/colima.yaml" = "~/.colima/default/colima.yaml"
 
 [linux]
 depends = ["default"]
