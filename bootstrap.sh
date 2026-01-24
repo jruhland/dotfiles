@@ -60,6 +60,22 @@ else
   brew bundle install --file=Brewfile.linux
 fi
 
+# Install 1Password CLI (Linux only, macOS uses cask)
+if is_linux; then
+  if ! command -v op &>/dev/null; then
+    if [ -f /etc/os-release ]; then
+      . /etc/os-release
+      if [ "$ID" = "ubuntu" ]; then
+        echo "Installing 1Password CLI..."
+        curl -fsSL https://downloads.1password.com/linux/keys/1password.agilebits.com.gpg.key | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.sources.list
+        sudo mkdir -p /usr/share/debsig/keyrings/1password && curl -fsSL https://downloads.1password.com/linux/debsig/1password.gpg | sudo tee /usr/share/debsig/keyrings/1password/1password.gpg > /dev/null
+        sudo apt update && sudo apt install -y 1password-cli
+      fi
+    fi
+  fi
+fi
+
 # Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Installing Oh My Zsh..."
@@ -98,6 +114,6 @@ mise install
 
 # Install global npm packages
 echo "Installing global npm packages..."
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code @openai/codex
 
 echo "Bootstrap complete!"
