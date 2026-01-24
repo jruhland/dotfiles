@@ -8,6 +8,18 @@ is_linux() { [ "$OS" = "Linux" ]; }
 
 echo "Bootstrapping dotfiles for $OS..."
 
+# Install prerequisites on Ubuntu
+if is_linux; then
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" = "ubuntu" ]; then
+      echo "Installing Ubuntu prerequisites..."
+      sudo apt-get update
+      sudo apt-get install -y build-essential procps curl file git zsh
+    fi
+  fi
+fi
+
 # Install Xcode Command Line Tools (macOS only)
 if is_darwin; then
   if ! xcode-select -p &>/dev/null; then
@@ -42,7 +54,11 @@ cd "$HOME/.dotfiles"
 
 # Install Homebrew packages
 echo "Installing Homebrew packages..."
-brew bundle install
+if is_darwin; then
+  brew bundle install --file=Brewfile
+else
+  brew bundle install --file=Brewfile.linux
+fi
 
 # Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -56,8 +72,11 @@ export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 dotter deploy -v
 
 # Install mise
-echo "Installing mise..."
-curl -fsSL https://mise.run | sh
+if [ ! -f "$HOME/.local/bin/mise" ]; then
+  echo "Installing mise..."
+  curl -fsSL https://mise.run | sh
+fi
+
 eval "$("$HOME/.local/bin/mise" activate bash)"
 mise install
 

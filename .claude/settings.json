@@ -65,7 +65,7 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -76,7 +76,10 @@
     "gopls-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "kotlin-lsp@claude-plugins-official": true
+    "kotlin-lsp@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "ralph-wiggum@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754077506421
