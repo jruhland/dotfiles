@@ -3,6 +3,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 plugins=(fzf)
 
 source $ZSH/oh-my-zsh.sh
@@ -33,10 +35,10 @@ setopt APPEND_HISTORY
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 
-# git spice completions
+# git spice
 eval "$(gs shell completion zsh)"
 
-# z
+# zoxide
 eval "$(zoxide init zsh)"
 
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh

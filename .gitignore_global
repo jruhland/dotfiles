@@ -33,5 +33,4 @@ Sessionx.vim
 # node
 npm-debug.log
 
-# claude
-.claude
+.claude.local.json
