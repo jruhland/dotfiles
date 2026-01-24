@@ -3,10 +3,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-plugins=(fzf asdf zoxide uv)
+plugins=(fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -14,12 +11,11 @@ export LANG=en_US.UTF-8
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
-  export TERM='xterm'
+  export TERM='xterm-256color'
 else
   export EDITOR='nvim'
 fi
 
-export SAM_CLI_TELEMETRY=0
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -40,11 +36,12 @@ setopt HIST_REDUCE_BLANKS
 # git spice completions
 eval "$(gs shell completion zsh)"
 
-# zoxide
+# z
 eval "$(zoxide init zsh)"
 
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
 alias claude="/Users/jarrod/.claude/local/claude"
+alias cc="/Users/jarrod/.claude/local/claude"
 
 . "$HOME/.local/bin/env"
 

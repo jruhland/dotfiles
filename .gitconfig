@@ -20,7 +20,6 @@
 	fp = fetch --prune
 	h = hist
 	hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
 	l = log
 	p = push
 	r = reset
@@ -51,6 +50,8 @@
 [rerere]
 	enabled = true
 
-
 [pull]
 	rebase = true
+
+[spice "branchCreate"]
+	commit = false
