@@ -34,3 +34,5 @@ Sessionx.vim
 npm-debug.log
 
 .claude.local.json
+.dotter/cache.toml
+.dotter/local.toml

@@ -1,7 +1,7 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -35,6 +35,8 @@ setopt APPEND_HISTORY
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 
+eval "$(oh-my-posh init zsh --config ~/.config/omp.json)"
+
 # git spice
 eval "$(gs shell completion zsh)"
 
@@ -47,4 +49,4 @@ alias cc="/Users/jarrod/.claude/local/claude"
 
 . "$HOME/.local/bin/env"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+eval "$(/Users/jarrod/.local/bin/mise activate zsh)"

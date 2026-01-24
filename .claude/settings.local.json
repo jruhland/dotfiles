@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(readlink:*)",
+      "WebSearch",
+      "Bash(dotter deploy:*)",
+      "Bash(export ZSH_CUSTOM=\"$HOME/.oh-my-zsh/custom\")",
+      "Bash(cat:*)"
+    ]
+  }
+}
