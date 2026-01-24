@@ -7,6 +7,8 @@ alias grep=rg
 alias vim=nvim
 alias g=git
 alias tf=terraform
+alias m=mise
+alias mk=make
 
 alias reload="source ~/.zshrc"
 alias zconfig="vim ~/.zshrc"
