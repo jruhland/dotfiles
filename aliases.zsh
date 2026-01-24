@@ -9,3 +9,7 @@ alias g=git
 
 alias reload="source ~/.zshrc"
 alias zconfig="vim ~/.zshrc"
+
+# Claude Code
+alias claude="/Users/jarrod/.claude/local/claude"
+alias cc="/Users/jarrod/.claude/local/claude"
