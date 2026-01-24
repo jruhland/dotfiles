@@ -27,11 +27,12 @@
     "explorer.autoReveal": false,
     "workbench.editor.revealIfOpen": true,
     "javascript.updateImportsOnFileMove.enabled": "never",
-    "editor.fontFamily": "'Maple Mono', Hack, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'Maple Mono NF', Menlo, Monaco, 'Courier New', monospace",
     "go.toolsManagement.autoUpdate": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "explorer.confirmDelete": false,
     "editor.rulers": [
         100
-    ]
+    ],
+    "editor.fontSize": 13
 }
