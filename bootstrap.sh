@@ -75,6 +75,12 @@ else
   dotter deploy -v -l linux
 fi
 
+# Apply macOS settings (before launching Cursor)
+if is_darwin; then
+  echo "Applying macOS settings..."
+  ./macos.sh
+fi
+
 # Install Cursor extensions
 if [ -f "$HOME/.dotfiles/cursor/install-extensions.sh" ]; then
   echo "Installing Cursor extensions..."
@@ -93,11 +99,5 @@ mise install
 # Install global npm packages
 echo "Installing global npm packages..."
 npm install -g @anthropic-ai/claude-code
-
-# Apply macOS settings
-if is_darwin; then
-  echo "Applying macOS settings..."
-  ./macos.sh
-fi
 
 echo "Bootstrap complete!"

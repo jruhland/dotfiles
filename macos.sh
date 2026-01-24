@@ -347,4 +347,16 @@ defaults write com.google.Chrome DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
+###############################################################################
+# Cursor                                                                      #
+###############################################################################
+
+# Disable press and hold for Cursor vim mode
+if [ -d "/Applications/Cursor.app" ]; then
+  CURSOR_BUNDLE_ID="$(osascript -e 'id of app "Cursor"' 2>/dev/null)"
+  if [ -n "$CURSOR_BUNDLE_ID" ]; then
+    defaults write "$CURSOR_BUNDLE_ID" ApplePressAndHoldEnabled -bool false
+  fi
+fi
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."

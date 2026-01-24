@@ -7,8 +7,13 @@ depends = []
 ".gitconfig" = "~/.gitconfig"
 ".gitignore_global" = "~/.gitignore"
 ".zshrc" = "~/.zshrc"
-".config" = { target = "~/.config", type = "symbolic" }
 ".tool-versions" = "~/.tool-versions"
+
+".config/bat" = { target = "~/.config/bat", type = "symbolic" }
+".config/gh" = { target = "~/.config/gh", type = "symbolic" }
+".config/ghostty" = { target = "~/.config/ghostty", type = "symbolic" }
+".config/nvim" = { target = "~/.config/nvim", type = "symbolic" }
+".config/omp.json" = { target = "~/.config/omp.json", type = "symbolic" }
 
 ".claude/settings.json" = "~/.claude/settings.json"
 ".claude/statusline.sh" = "~/.claude/statusline.sh"
