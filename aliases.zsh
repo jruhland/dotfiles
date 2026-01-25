@@ -1,3 +1,4 @@
+alias ff="fastfetch"
 alias zshconfig="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
 alias dc=docker-compose
