@@ -77,6 +77,12 @@ fi
 if ! gh auth status &>/dev/null; then
   echo "GitHub authentication required for Homebrew taps..."
   gh auth login --scopes "admin:public_key"
+
+  # Verify authentication succeeded
+  if ! gh auth status &>/dev/null; then
+    echo "ERROR: GitHub authentication failed. Please run 'gh auth login' manually."
+    exit 1
+  fi
 fi
 
 # Generate SSH key and add to GitHub if not present
@@ -86,7 +92,17 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
   chmod 700 "$HOME/.ssh"
   ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N "" -q
   echo "Adding SSH key to GitHub..."
-  gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"
+  if gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"; then
+    echo "SSH key successfully added to GitHub"
+  else
+    echo "WARNING: Failed to add SSH key to GitHub. You may need to add it manually."
+  fi
+fi
+
+# Verify SSH key is on GitHub
+if ! ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+  echo "WARNING: SSH authentication to GitHub failed. You may need to add your SSH key manually."
+  echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
 fi
 
 # Install Homebrew packages

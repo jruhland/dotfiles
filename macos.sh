@@ -341,4 +341,14 @@ if [ -d "/Applications/Cursor.app" ]; then
   fi
 fi
 
+echo "Configuring auto-start apps..."
+
+# Add apps to login items
+for app in "Hyperkey" "Rectangle Pro" "Raycast"; do
+  if [ -d "/Applications/$app.app" ]; then
+    osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/$app.app\", hidden:false}" 2>/dev/null || true
+    echo "Added $app to login items"
+  fi
+done
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
