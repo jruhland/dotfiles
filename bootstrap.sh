@@ -62,7 +62,7 @@ fi
 # Authenticate with GitHub if not already (needed for third-party taps)
 if ! gh auth status &>/dev/null; then
   echo "GitHub authentication required for Homebrew taps..."
-  gh auth login
+  gh auth login --scopes "admin:public_key"
 fi
 
 # Generate SSH key and add to GitHub if not present
