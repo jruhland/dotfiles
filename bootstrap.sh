@@ -53,6 +53,28 @@ fi
 
 cd "$HOME/.dotfiles"
 
+# Install gh CLI first (needed for taps that require GitHub auth)
+if ! command -v gh &>/dev/null; then
+  echo "Installing GitHub CLI..."
+  brew install gh
+fi
+
+# Authenticate with GitHub if not already (needed for third-party taps)
+if ! gh auth status &>/dev/null; then
+  echo "GitHub authentication required for Homebrew taps..."
+  gh auth login
+fi
+
+# Generate SSH key and add to GitHub if not present
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+  echo "Generating SSH key..."
+  mkdir -p "$HOME/.ssh"
+  chmod 700 "$HOME/.ssh"
+  ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N "" -q
+  echo "Adding SSH key to GitHub..."
+  gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"
+fi
+
 # Install Homebrew packages
 echo "Installing Homebrew packages..."
 if is_darwin; then
