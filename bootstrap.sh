@@ -34,9 +34,13 @@ fi
 # Install Homebrew
 BREW_INSTALLED=false
 if is_darwin; then
-  [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] && BREW_INSTALLED=true
+  if [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ]; then
+    BREW_INSTALLED=true
+  fi
 else
-  [ -x /home/linuxbrew/.linuxbrew/bin/brew ] && BREW_INSTALLED=true
+  if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    BREW_INSTALLED=true
+  fi
 fi
 
 if [ "$BREW_INSTALLED" = false ]; then
