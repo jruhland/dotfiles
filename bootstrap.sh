@@ -62,6 +62,11 @@ fi
 
 cd "$HOME/.dotfiles"
 
+# Ensure dotfiles are up to date
+echo "Updating dotfiles..."
+git fetch origin
+git reset --hard origin/main
+
 # Install gh CLI first (needed for taps that require GitHub auth)
 if ! command -v gh &>/dev/null; then
   echo "Installing GitHub CLI..."
