@@ -14,6 +14,7 @@ depends = []
 ".config/ghostty" = { target = "~/.config/ghostty", type = "symbolic" }
 ".config/nvim" = { target = "~/.config/nvim", type = "symbolic" }
 ".config/omp.json" = { target = "~/.config/omp.json", type = "symbolic" }
+".config/fastfetch" = { target = "~/.config/fastfetch", type = "symbolic" }
 
 ".claude/CLAUDE.md" = "~/AGENTS.md"
 ".claude/settings.json" = "~/.claude/settings.json"
