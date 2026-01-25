@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x  # Enable debug mode to see which commands are failing
+
 # Close any open System Settings panes, to prevent them from overriding settings
 osascript -e 'tell application "System Settings" to quit' 2>/dev/null || true
 
