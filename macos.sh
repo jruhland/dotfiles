@@ -17,10 +17,10 @@ done 2>/dev/null &
 echo "Applying General UI/UX settings..."
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+sudo nvram SystemAudioVolume=" " 2>/dev/null || true
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
-defaults write com.apple.universalaccess reduceTransparency -bool true 2>/dev/null || true
+defaults write com.apple.universalaccess reduceTransparency -bool true >/dev/null 2>&1 || true
 
 # Show scrollbars when scrolling
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
@@ -63,7 +63,7 @@ defaults write com.apple.helpviewer DevMode -bool true
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2>/dev/null
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist >/dev/null 2>&1 || true
 
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
@@ -89,17 +89,17 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true 2>/dev/null || true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 2>/dev/null || true
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true >/dev/null 2>&1 || true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 >/dev/null 2>&1 || true
 # Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true 2>/dev/null || true
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true >/dev/null 2>&1 || true
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist >/dev/null 2>&1 || true
 
 echo "Applying Energy saving settings..."
 
@@ -116,7 +116,7 @@ sudo pmset -b sleep 5
 sudo pmset -a standbydelay 86400
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off 2>/dev/null || true
+sudo systemsetup -setcomputersleep Off >/dev/null 2>&1 || true
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
@@ -260,17 +260,20 @@ echo "Applying Spotlight settings..."
 #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes" >/dev/null 2>&1 || true
 # Make sure indexing is disabled
-sudo mdutil -i off / >/dev/null
+sudo mdutil -i off / >/dev/null 2>&1 || true
 
 echo "Applying Time Machine settings..."
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable local Time Machine backups
-hash tmutil &>/dev/null && sudo tmutil disablelocal
+# Disable Time Machine and local snapshots
+if hash tmutil &>/dev/null; then
+  sudo tmutil disable >/dev/null 2>&1 || true
+  sudo tmutil deletelocalsnapshots / >/dev/null 2>&1 || true
+fi
 
 echo "Applying Mac App Store settings..."
 
