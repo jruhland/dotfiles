@@ -19,7 +19,7 @@ echo "Applying General UI/UX settings..."
 sudo nvram SystemAudioVolume=" " 2>/dev/null || true
 
 # Reduce transparency in the menu bar and elsewhere
-defaults write com.apple.universalaccess reduceTransparency -bool true >/dev/null 2>&1 || true
+defaults write com.apple.universalaccess reduceTransparency -bool true 2>/dev/null || true
 
 # Show scrollbars when scrolling
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
@@ -81,10 +81,10 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40 2>/dev/null || true
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true >/dev/null 2>&1 || true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 >/dev/null 2>&1 || true
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true 2>/dev/null || true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 2>/dev/null || true
 # Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true >/dev/null 2>&1 || true
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true 2>/dev/null || true
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -105,8 +105,8 @@ sudo pmset -b sleep 5
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
-# Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off >/dev/null 2>&1 || true
+# Never go into computer sleep mode (may fail on modern macOS)
+sudo systemsetup -setcomputersleep Off 2>/dev/null || true
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
@@ -251,28 +251,31 @@ killall Dock 2>/dev/null || true
 
 echo "Applying Spotlight settings..."
 
-# Completely disable Spotlight indexing
-sudo mdutil -a -i off >/dev/null 2>&1 || true
-sudo mdutil -E / >/dev/null 2>&1 || true
+# Disable Spotlight indexing (may fail on modern macOS with SIP)
+sudo mdutil -a -i off 2>/dev/null || true
+sudo mdutil -E / 2>/dev/null || true
 
 # Disable Spotlight keyboard shortcut
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (65535, 49, 1048576); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (65535, 49, 1048576); type = 'standard'; }; }" 2>/dev/null || true
 
-# Unload Spotlight launch agents
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist >/dev/null 2>&1 || true
+# Unload Spotlight launch agents (protected by SIP on modern macOS)
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist 2>/dev/null || true
 
-# Disable Spotlight indexing for mounted volumes
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes" >/dev/null 2>&1 || true
+# Disable Spotlight indexing for mounted volumes (requires special permissions)
+sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes" 2>/dev/null || true
 
 echo "Applying Time Machine settings..."
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable Time Machine and local snapshots
+# Disable Time Machine
 if hash tmutil &>/dev/null; then
-  sudo tmutil disable >/dev/null 2>&1 || true
-  sudo tmutil deletelocalsnapshots / >/dev/null 2>&1 || true
+  sudo tmutil disable 2>/dev/null || true
+  # Delete local Time Machine snapshots (syntax varies by macOS version)
+  for snapshot in $(tmutil listlocalsnapshots / 2>/dev/null | grep "com.apple.TimeMachine" | cut -d. -f4-); do
+    sudo tmutil deletelocalsnapshots "$snapshot" 2>/dev/null || true
+  done
 fi
 
 echo "Applying Mac App Store settings..."

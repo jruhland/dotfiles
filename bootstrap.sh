@@ -32,10 +32,19 @@ if is_darwin; then
 fi
 
 # Install Homebrew
-if ! command -v brew &>/dev/null; then
+BREW_INSTALLED=false
+if is_darwin; then
+  [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] && BREW_INSTALLED=true
+else
+  [ -x /home/linuxbrew/.linuxbrew/bin/brew ] && BREW_INSTALLED=true
+fi
+
+if [ "$BREW_INSTALLED" = false ]; then
   echo "Installing Homebrew..."
   sudo -v
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Homebrew already installed, skipping..."
 fi
 
 # Add Homebrew to PATH for this script
