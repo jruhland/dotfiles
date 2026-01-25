@@ -69,7 +69,7 @@ if is_linux; then
         echo "Installing 1Password CLI..."
         curl -fsSL https://downloads.1password.com/linux/keys/1password.agilebits.com.gpg.key | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.sources.list
-        sudo mkdir -p /usr/share/debsig/keyrings/1password && curl -fsSL https://downloads.1password.com/linux/debsig/1password.gpg | sudo tee /usr/share/debsig/keyrings/1password/1password.gpg > /dev/null
+        sudo mkdir -p /usr/share/debsig/keyrings/1password && curl -fsSL https://downloads.1password.com/linux/debsig/1password.gpg | sudo tee /usr/share/debsig/keyrings/1password/1password.gpg >/dev/null
         sudo apt update && sudo apt install -y 1password-cli
       fi
     fi
