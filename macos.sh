@@ -22,7 +22,7 @@ done 2>/dev/null &
 sudo nvram SystemAudioVolume=" "
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
-defaults write com.apple.universalaccess reduceTransparency -bool true
+defaults write com.apple.universalaccess reduceTransparency -bool true 2>/dev/null || true
 
 # Show scrollbars when scrolling
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
@@ -93,10 +93,10 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true 2>/dev/null || true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 2>/dev/null || true
 # Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true 2>/dev/null || true
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -122,7 +122,7 @@ sudo pmset -b sleep 5
 sudo pmset -a standbydelay 86400
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off >/dev/null
+sudo systemsetup -setcomputersleep Off 2>/dev/null || true
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
