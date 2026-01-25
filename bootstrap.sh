@@ -108,10 +108,14 @@ fi
 # Deploy dotfiles with dotter
 echo "Deploying dotfiles..."
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+FORCE_FLAG=""
+if [ "${BOOTSTRAP_FORCE:-true}" = "true" ]; then
+  FORCE_FLAG="--force"
+fi
 if is_darwin; then
-  dotter deploy -v -l .dotter/macos.toml
+  dotter deploy -v -l .dotter/macos.toml $FORCE_FLAG
 else
-  dotter deploy -v -l .dotter/linux.toml
+  dotter deploy -v -l .dotter/linux.toml $FORCE_FLAG
 fi
 
 # Apply macOS settings (before launching Cursor)
