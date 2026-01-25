@@ -104,7 +104,10 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
 fi
 
 echo "Verifying SSH authentication to GitHub..."
-if ! ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+SSH_TEST=$(ssh -T git@github.com 2>&1 || true)
+if echo "$SSH_TEST" | grep -q "successfully authenticated"; then
+  echo "SSH authentication successful"
+else
   echo "WARNING: SSH authentication to GitHub failed. You may need to add your SSH key manually."
   echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
 fi
