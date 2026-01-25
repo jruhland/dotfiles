@@ -71,13 +71,13 @@ echo "Updating dotfiles..."
 git fetch origin
 git reset --hard origin/main
 
-# Install gh CLI first (needed for taps that require GitHub auth)
+echo "Checking for GitHub CLI..."
 if ! command -v gh &>/dev/null; then
   echo "Installing GitHub CLI..."
   brew install gh
 fi
 
-# Authenticate with GitHub if not already (needed for third-party taps)
+echo "Checking GitHub authentication..."
 if ! gh auth status &>/dev/null; then
   echo "GitHub authentication required for Homebrew taps..."
   gh auth login --scopes "admin:public_key"
@@ -89,7 +89,7 @@ if ! gh auth status &>/dev/null; then
   fi
 fi
 
-# Generate SSH key and add to GitHub if not present
+echo "Checking SSH keys..."
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
   echo "Generating SSH key..."
   mkdir -p "$HOME/.ssh"
@@ -103,7 +103,7 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
   fi
 fi
 
-# Verify SSH key is on GitHub
+echo "Verifying SSH authentication to GitHub..."
 if ! ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
   echo "WARNING: SSH authentication to GitHub failed. You may need to add your SSH key manually."
   echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
@@ -171,6 +171,7 @@ if [ ! -f "$HOME/.local/bin/mise" ]; then
   curl -fsSL https://mise.run | sh
 fi
 
+echo "Installing mise tools..."
 eval "$("$HOME/.local/bin/mise" activate bash)"
 mise install
 
