@@ -8,6 +8,7 @@ depends = []
 ".gitignore_global" = "~/.gitignore"
 ".zshrc" = "~/.zshrc"
 ".tool-versions" = "~/.tool-versions"
+".local/bin/env" = "~/.local/bin/env"
 
 ".config/bat" = { target = "~/.config/bat", type = "symbolic" }
 ".config/gh" = { target = "~/.config/gh", type = "symbolic" }

@@ -108,6 +108,7 @@ fi
 # Deploy dotfiles with dotter
 echo "Deploying dotfiles..."
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+mkdir -p "$HOME/.local/bin"
 FORCE_FLAG=""
 if [ "${BOOTSTRAP_FORCE:-true}" = "true" ]; then
   FORCE_FLAG="--force"
@@ -142,5 +143,9 @@ mise install
 # Install global npm packages
 echo "Installing global npm packages..."
 npm install -g @anthropic-ai/claude-code @openai/codex
+
+# Install Claude Code symlink
+echo "Setting up Claude Code..."
+claude install
 
 echo "Bootstrap complete!"

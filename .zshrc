@@ -44,6 +44,6 @@ eval "$(gs shell completion zsh)"
 eval "$(zoxide init zsh)"
 
 # Additional aliases are found in $ZSH_CUSTOM/aliases.zsh
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 eval "$(/Users/jarrod/.local/bin/mise activate zsh)"

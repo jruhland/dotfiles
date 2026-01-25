@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 
 # Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+# settings we're about to change
+osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
 
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until script finishes
 while true; do
   sudo -n true
-  sleep 60
+  sleep 30
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-###############################################################################
-# General UI/UX                                                               #
-###############################################################################
+echo "Applying General UI/UX settings..."
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -76,9 +74,7 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
-###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
-###############################################################################
+echo "Applying Trackpad, mouse, keyboard settings..."
 
 # Trackpad: map bottom right corner to right-click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
@@ -105,9 +101,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Stop iTunes from responding to the keyboard media keys
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
 
-###############################################################################
-# Energy saving                                                               #
-###############################################################################
+echo "Applying Energy saving settings..."
 
 # Sleep the display after 15 minutes
 sudo pmset -a displaysleep 15
@@ -130,9 +124,7 @@ sudo systemsetup -setcomputersleep Off 2>/dev/null || true
 #    power failure.
 sudo pmset -a hibernatemode 0
 
-###############################################################################
-# Finder                                                                      #
-###############################################################################
+echo "Applying Finder settings..."
 
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
@@ -178,9 +170,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-###############################################################################
-# Dock, Dashboard, and hot corners                                            #
-###############################################################################
+echo "Applying Dock and hot corners settings..."
 
 # Disable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool disable
@@ -264,9 +254,7 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 
-###############################################################################
-# Spotlight                                                                   #
-###############################################################################
+echo "Applying Spotlight settings..."
 
 # Hide Spotlight tray-icon (and subsequent helper)
 #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
@@ -276,9 +264,7 @@ sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Vol
 # Make sure indexing is disabled
 sudo mdutil -i off / >/dev/null
 
-###############################################################################
-# Time Machine                                                                #
-###############################################################################
+echo "Applying Time Machine settings..."
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -286,9 +272,7 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # Disable local Time Machine backups
 hash tmutil &>/dev/null && sudo tmutil disablelocal
 
-###############################################################################
-# Mac App Store                                                               #
-###############################################################################
+echo "Applying Mac App Store settings..."
 
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
@@ -317,23 +301,17 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
-###############################################################################
-# Photos                                                                      #
-###############################################################################
+echo "Applying Photos settings..."
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
-###############################################################################
-# Messages                                                                    #
-###############################################################################
+echo "Applying Messages settings..."
 
 # Disable smart quotes as it’s annoying for messages that contain code
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
 
-###############################################################################
-# Google Chrome & Google Chrome Canary                                        #
-###############################################################################
+echo "Applying Google Chrome settings..."
 
 # Disable the all too sensitive backswipe on trackpads
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
@@ -347,9 +325,7 @@ defaults write com.google.Chrome DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
-###############################################################################
-# Cursor                                                                      #
-###############################################################################
+echo "Applying Cursor settings..."
 
 # Disable press and hold for Cursor vim mode
 if [ -d "/Applications/Cursor.app" ]; then
