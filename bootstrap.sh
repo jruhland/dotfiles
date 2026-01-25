@@ -66,11 +66,6 @@ fi
 
 cd "$HOME/.dotfiles"
 
-# Ensure dotfiles are up to date
-echo "Updating dotfiles..."
-git fetch origin
-git reset --hard origin/main
-
 echo "Checking for GitHub CLI..."
 if ! command -v gh &>/dev/null; then
   echo "Installing GitHub CLI..."
@@ -95,24 +90,36 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
   mkdir -p "$HOME/.ssh"
   chmod 700 "$HOME/.ssh"
   ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N "" -q
-  echo "Adding SSH key to GitHub..."
-  if gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"; then
-    echo "SSH key successfully added to GitHub"
+else
+  echo "SSH key already exists"
+fi
+
+# Check if SSH key is on GitHub and add if missing
+if [ -f "$HOME/.ssh/id_ed25519.pub" ]; then
+  KEY_CONTENT=$(cat "$HOME/.ssh/id_ed25519.pub" | awk '{print $2}')
+  if gh ssh-key list | grep -q "$KEY_CONTENT"; then
+    echo "SSH key already on GitHub"
   else
-    echo "WARNING: Failed to add SSH key to GitHub. You may need to add it manually."
+    echo "Adding SSH key to GitHub..."
+    if gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"; then
+      echo "SSH key successfully added to GitHub"
+    else
+      echo "WARNING: Failed to add SSH key to GitHub. You may need to add it manually."
+      echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
+    fi
   fi
 fi
 
-echo "Verifying SSH authentication to GitHub..."
-set +e  # Disable exit on error for SSH check
-SSH_TEST=$(ssh -T git@github.com 2>&1)
-if echo "$SSH_TEST" | grep -q "successfully authenticated"; then
-  echo "SSH authentication successful"
+# Add GitHub to known_hosts to avoid host verification prompts
+echo "Checking GitHub in known_hosts..."
+mkdir -p "$HOME/.ssh"
+touch "$HOME/.ssh/known_hosts"
+if ! grep -q "github.com" "$HOME/.ssh/known_hosts"; then
+  echo "Adding GitHub to known_hosts..."
+  ssh-keyscan -t ed25519 github.com >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
 else
-  echo "WARNING: SSH authentication to GitHub failed. You may need to add your SSH key manually."
-  echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
+  echo "GitHub already in known_hosts"
 fi
-set -e  # Re-enable exit on error
 
 # Install Homebrew packages
 echo "Installing Homebrew packages..."
