@@ -104,13 +104,15 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
 fi
 
 echo "Verifying SSH authentication to GitHub..."
-SSH_TEST=$(ssh -T git@github.com 2>&1 || true)
+set +e  # Disable exit on error for SSH check
+SSH_TEST=$(ssh -T git@github.com 2>&1)
 if echo "$SSH_TEST" | grep -q "successfully authenticated"; then
   echo "SSH authentication successful"
 else
   echo "WARNING: SSH authentication to GitHub failed. You may need to add your SSH key manually."
   echo "Run: gh ssh-key add ~/.ssh/id_ed25519.pub"
 fi
+set -e  # Re-enable exit on error
 
 # Install Homebrew packages
 echo "Installing Homebrew packages..."
