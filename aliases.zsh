@@ -14,5 +14,5 @@ alias reload="source ~/.zshrc"
 alias zconfig="vim ~/.zshrc"
 
 # Claude Code
-alias claude="~/.claude/local/claude"
-alias cc="~/.claude/local/claude"
+alias claude="~/.local/bin/claude"
+alias cc="~/.local/bin/claude"

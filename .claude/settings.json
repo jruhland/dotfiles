@@ -15,7 +15,6 @@
     "pr": ""
   },
   "permissions": {
-    "defaultMode": "acceptEdits",
     "allow": [
       "Edit(*)",
       "Write(*)",
@@ -63,7 +62,8 @@
       "Bash(curl:*)",
       "Bash(wget:*)",
       "Bash(rm:*)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
   "model": "opus",
   "statusLine": {
@@ -76,7 +76,8 @@
     "pyright-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true,
     "ralph-wiggum@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754077506421
