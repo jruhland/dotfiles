@@ -1,0 +1,38 @@
+{
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "github-actions": true,
+    "html": true,
+    "oxc": true,
+    "sql": true,
+    "terraform": true
+  },
+  "agent_servers": {
+    "opencode": {
+      "default_model": "anthropic/claude-opus-4-5/high",
+      "favorite_models": [
+        "anthropic/claude-opus-4-5/high",
+        "anthropic/claude-sonnet-4-5-20250929/high",
+        "anthropic/claude-haiku-4-5"
+      ],
+      "type": "registry"
+    },
+    "claude": {
+      "default_model": "opus"
+    }
+  },
+  "rounded_selection": false,
+  "agent_ui_font_size": 15.0,
+  "buffer_font_family": "Maple Mono NF",
+  "vim_mode": true,
+  "icon_theme": "Catppuccin Mocha",
+  "ui_font_size": 16,
+  "buffer_font_size": 14.0,
+  "theme": "Catppuccin Mocha",
+  "wrap_guides": [100],
+  "soft_wrap": "bounded",
+  "preferred_line_length": 100
+}

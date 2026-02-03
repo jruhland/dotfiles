@@ -171,12 +171,6 @@ if is_darwin; then
   ./macos.sh
 fi
 
-# Install Cursor extensions
-if [ -f "$HOME/.dotfiles/cursor/install-extensions.sh" ]; then
-  echo "Installing Cursor extensions..."
-  "$HOME/.dotfiles/cursor/install-extensions.sh"
-fi
-
 # Install mise
 if [ ! -f "$HOME/.local/bin/mise" ]; then
   echo "Installing mise..."
