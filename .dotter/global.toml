@@ -17,6 +17,13 @@ depends = []
 ".config/omp.json" = { target = "~/.config/omp.json", type = "symbolic" }
 ".config/fastfetch" = { target = "~/.config/fastfetch", type = "symbolic" }
 
+".config/opencode/opencode.json" = "~/.config/opencode/opencode.json"
+".config/opencode/agents" = { target = "~/.config/opencode/agents", type = "symbolic" }
+".config/opencode/commands" = { target = "~/.config/opencode/commands", type = "symbolic" }
+".config/opencode/plugins" = { target = "~/.config/opencode/plugins", type = "symbolic" }
+".config/opencode/skills" = { target = "~/.config/opencode/skills", type = "symbolic" }
+".config/opencode/tools" = { target = "~/.config/opencode/tools", type = "symbolic" }
+
 ".claude/CLAUDE.md" = "~/AGENTS.md"
 ".claude/settings.json" = "~/.claude/settings.json"
 ".claude/statusline.sh" = "~/.claude/statusline.sh"
