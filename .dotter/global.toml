@@ -4,31 +4,38 @@
 depends = []
 
 [default.files]
-".gitconfig" = "~/.gitconfig"
-".gitignore_global" = "~/.gitignore"
-".zshrc" = "~/.zshrc"
-".tool-versions" = "~/.tool-versions"
-".local/bin/env" = "~/.local/bin/env"
+# Git
+"git/gitconfig" = "~/.gitconfig"
+"git/gitignore_global" = "~/.gitignore"
 
-".config/bat" = { target = "~/.config/bat", type = "symbolic" }
-".config/gh" = { target = "~/.config/gh", type = "symbolic" }
-".config/ghostty" = { target = "~/.config/ghostty", type = "symbolic" }
-".config/nvim" = { target = "~/.config/nvim", type = "symbolic" }
-".config/omp.json" = { target = "~/.config/omp.json", type = "symbolic" }
-".config/fastfetch" = { target = "~/.config/fastfetch", type = "symbolic" }
+# Zsh
+"zsh/zshrc" = "~/.zshrc"
+"zsh/aliases.zsh" = "~/.oh-my-zsh/custom/aliases.zsh"
 
-".config/opencode/opencode.json" = "~/.config/opencode/opencode.json"
-".config/opencode/agents" = { target = "~/.config/opencode/agents", type = "symbolic" }
-".config/opencode/commands" = { target = "~/.config/opencode/commands", type = "symbolic" }
-".config/opencode/plugins" = { target = "~/.config/opencode/plugins", type = "symbolic" }
-".config/opencode/skills" = { target = "~/.config/opencode/skills", type = "symbolic" }
-".config/opencode/tools" = { target = "~/.config/opencode/tools", type = "symbolic" }
+# Tools
+"mise/tool-versions" = "~/.tool-versions"
+"local-bin/env" = "~/.local/bin/env"
 
-".claude/CLAUDE.md" = "~/AGENTS.md"
-".claude/settings.json" = "~/.claude/settings.json"
-".claude/statusline.sh" = "~/.claude/statusline.sh"
+# Symlinked app configs
+"bat" = { target = "~/.config/bat", type = "symbolic" }
+"gh" = { target = "~/.config/gh", type = "symbolic" }
+"ghostty" = { target = "~/.config/ghostty", type = "symbolic" }
+"nvim" = { target = "~/.config/nvim", type = "symbolic" }
+"omp/omp.json" = { target = "~/.config/omp.json", type = "symbolic" }
+"fastfetch" = { target = "~/.config/fastfetch", type = "symbolic" }
 
-"aliases.zsh" = "~/.oh-my-zsh/custom/aliases.zsh"
+# Opencode
+"opencode/opencode.json" = "~/.config/opencode/opencode.json"
+"opencode/agents" = { target = "~/.config/opencode/agents", type = "symbolic" }
+"opencode/commands" = { target = "~/.config/opencode/commands", type = "symbolic" }
+"opencode/plugins" = { target = "~/.config/opencode/plugins", type = "symbolic" }
+"opencode/skills" = { target = "~/.config/opencode/skills", type = "symbolic" }
+"opencode/tools" = { target = "~/.config/opencode/tools", type = "symbolic" }
+
+# Claude
+"claude/CLAUDE.md" = "~/AGENTS.md"
+"claude/settings.json" = "~/.claude/settings.json"
+"claude/statusline.sh" = "~/.claude/statusline.sh"
 
 [default.variables]
 
@@ -36,18 +43,14 @@ depends = []
 depends = ["default"]
 
 [macos.files]
-"cursor/settings.json" = "~/Library/Application Support/Cursor/User/settings.json"
-"cursor/keybindings.json" = "~/Library/Application Support/Cursor/User/keybindings.json"
-".colima/colima.yaml" = "~/.colima/default/colima.yaml"
-".docker/config.json" = "~/.docker/config.json"
+"colima/colima.yaml" = "~/.colima/default/colima.yaml"
+"docker/config.json" = "~/.docker/config.json"
 
 [linux]
 depends = ["default"]
 
 [linux.files]
-"cursor/settings.json" = "~/.config/Cursor/User/settings.json"
-"cursor/keybindings.json" = "~/.config/Cursor/User/keybindings.json"
-".docker/config.linux.json" = { target = "~/.docker/config.json", type = "template" }
+"docker/config.linux.json" = { target = "~/.docker/config.json", type = "template" }
 
 [settings]
 default_target_type = "automatic"
