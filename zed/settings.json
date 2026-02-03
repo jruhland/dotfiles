@@ -1,4 +1,8 @@
 {
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
   "auto_install_extensions": {
     "catppuccin": true,
     "catppuccin-icons": true,
