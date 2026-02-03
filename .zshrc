@@ -47,3 +47,6 @@ eval "$(zoxide init zsh)"
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 eval "$(/Users/jarrod/.local/bin/mise activate zsh)"
+
+# opencode
+export PATH=/Users/jarrod/.opencode/bin:$PATH

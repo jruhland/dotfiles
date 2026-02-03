@@ -116,7 +116,7 @@ mkdir -p "$HOME/.ssh"
 touch "$HOME/.ssh/known_hosts"
 if ! grep -q "github.com" "$HOME/.ssh/known_hosts"; then
   echo "Adding GitHub to known_hosts..."
-  ssh-keyscan -t ed25519 github.com >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
+  ssh-keyscan -t ed25519 github.com >>"$HOME/.ssh/known_hosts" 2>/dev/null || true
 else
   echo "GitHub already in known_hosts"
 fi
@@ -194,5 +194,8 @@ npm install -g @anthropic-ai/claude-code @openai/codex
 # Install Claude Code symlink
 echo "Setting up Claude Code..."
 claude install
+
+# Install opencode
+curl -fsSL https://opencode.ai/install | bash
 
 echo "Bootstrap complete!"

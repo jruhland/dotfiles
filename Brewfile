@@ -1,3 +1,5 @@
+tap "jandedobbeleer/oh-my-posh"
+
 brew "dotter"
 brew "neovim"
 brew "zoxide"
@@ -28,6 +30,6 @@ cask "rectangle-pro"
 cask "raycast"
 cask "spotify"
 cask "google-chrome"
-cask "cursor"
 cask "signal"
 cask "utm"
+cask "zed"

@@ -17,3 +17,6 @@ alias zconfig="vim ~/.zshrc"
 # Claude Code
 alias claude="~/.local/bin/claude"
 alias cc="~/.local/bin/claude"
+
+# Opencode
+alias oc="opencode"
