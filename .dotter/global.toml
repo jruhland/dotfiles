@@ -37,7 +37,7 @@ depends = []
 "zed/keymap.json" = "~/.config/zed/keymap.json"
 
 # Claude
-"claude/CLAUDE.md" = "~/AGENTS.md"
+"claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
 "claude/settings.json" = "~/.claude/settings.json"
 "claude/statusline.sh" = "~/.claude/statusline.sh"
 

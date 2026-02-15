@@ -2,3 +2,5 @@ font-family = Maple Mono NF
 theme = Catppuccin Mocha
 background-opacity=1
 keybind = shift+enter=text:\x1b\r
+clipboard-paste-protection = false
+keybind = super+shift+t=prompt_surface_title

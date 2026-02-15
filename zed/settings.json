@@ -1,4 +1,14 @@
 {
+  "when_closing_with_no_tabs": "keep_window_open",
+  "agent": {
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "base_keymap": "SublimeText",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
