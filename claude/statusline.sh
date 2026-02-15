@@ -123,6 +123,11 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     else
       BRANCH=" ${WHITE}${CURRENT_BRANCH}${RESET}"
     fi
+  else
+    SHORT_SHA=$(git rev-parse --short HEAD 2>/dev/null)
+    if [ -n "$SHORT_SHA" ]; then
+      BRANCH=" ${YELLOW}${SHORT_SHA} ${DIM}(detached)${RESET}"
+    fi
   fi
 fi
 
