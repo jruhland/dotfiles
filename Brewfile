@@ -20,6 +20,7 @@ brew "docker-credential-helper-ecr"
 brew "zsh-syntax-highlighting"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh"
 brew "fastfetch"
+brew "dlvhdr/formulae/diffnav"
 
 cask "1password"
 cask "1password-cli"

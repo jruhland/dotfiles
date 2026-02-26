@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "CLAUDE_CODE_SUBAGENT_MODEL": "opus[1m]",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet[1m]",
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_COST_WARNINGS": "1",
     "DISABLE_ERROR_REPORTING": "1",
@@ -17,6 +17,7 @@
       "Write(*)",
       "Update(*)",
       "Read",
+      "Bash(bd:*)",
       "Bash(mv:*)",
       "Bash(mkdir:*)",
       "Bash(pnpm:*)",
@@ -47,7 +48,8 @@
       "Bash(docker:*)",
       "Bash(python:*)",
       "Bash(python3:*)",
-      "mcp__chrome-devtools__*"
+      "mcp__chrome-devtools__*",
+      "mcp__playwright__*"
     ],
     "deny": [
       "Bash(rm -rf /)",
@@ -64,21 +66,45 @@
     "defaultMode": "acceptEdits"
   },
   "model": "opus[1m]",
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bd prime"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bd prime"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "ralph-wiggum@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
+  "effortLevel": "medium",
   "feedbackSurveyState": {
     "lastShownTime": 1754077506421
-  },
-  "effortLevel": "medium"
+  }
 }

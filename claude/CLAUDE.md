@@ -12,6 +12,7 @@
 - superthink. THINK A LOT. **Think hard, do not lose the plot**.
 - **No breadcrumbs**. If you delete or move code, do not leave a comment in the old place. No "// moved to X", no "relocated". Just remove it.
 - **Use comments sparingly**. If obvious from the code, do not add a comment.
+- When editing files, preserve all existing inline comments you did not make. Do not strip or remove comments during rewrites or refactors.
 - Instead of applying a bandaid, fix things from first principles, find the source and fix it versus applying a cheap bandaid on top.
 - When taking on new work, follow this order:
   1. Think about the architecture.

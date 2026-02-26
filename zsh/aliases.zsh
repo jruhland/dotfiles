@@ -4,7 +4,6 @@ alias reload="source ~/.zshrc"
 alias dc=docker-compose
 alias ls=eza
 alias cat=bat
-alias grep=rg
 alias vim=nvim
 alias g=git
 alias tf=terraform
@@ -20,3 +19,6 @@ alias cc="~/.local/bin/claude"
 
 # Opencode
 alias oc="opencode"
+
+# Git
+alias gd="git diff | diffnav"
